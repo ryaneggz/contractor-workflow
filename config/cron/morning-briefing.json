@@ -2,6 +2,7 @@
   "name": "morning-briefing",
   "schedule": "0 7 * * *",
   "description": "Daily 7 AM status briefing to contractor via WhatsApp",
+  "timezone_note": "Schedule runs in the server timezone configured via timedatectl on the Droplet (see YOUR_TIMEZONE in .env.example)",
   "prompt": "Generate a morning briefing for the contractor. Read all active projects from the tracking sheet. For each active project, summarize: status, crew assigned, budget remaining, any pending crew replies, upcoming deadlines. Send the briefing as a WhatsApp message to the contractor.",
   "tools": ["gog", "message", "memory"],
   "enabled": true
