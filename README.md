@@ -404,9 +404,11 @@ openclaw cron reload
 ```
 contractor-workflow/
   .env.example              # All placeholder values
-  README.md                 # This file
+  .gitignore                # Git ignore rules (keeps .env out of commits)
   AGENTS.md                 # Architecture overview + workflow mapping
   CLAUDE.md                 # Claude Code instructions
+  Makefile                  # Development helpers (ralph, archive)
+  README.md                 # This file
   config/
     openclaw.jsonc           # OpenClaw config template
     cron/
