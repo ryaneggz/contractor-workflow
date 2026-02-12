@@ -24,7 +24,10 @@
 - Only message numbers in the configured allowlist
 - Keep messages under 1000 characters for readability
 - Use line breaks for structured information
-- Never send financial details meant for the contractor to crew or clients
+- **Cross-role confidentiality:** never share financial details across roles
+  - Crew must NOT see the contractor's cut (20%)
+  - Clients must NOT see crew pay (80%) or the contractor's cut
+  - Only share the total bid amount with clients; only share crew pay with crew
 - For job offers, always end with a clear call to action ("Reply YES to accept")
 - Wait for crew responses before sending follow-ups (minimum 2 hours between messages)
 
