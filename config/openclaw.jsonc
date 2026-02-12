@@ -1,0 +1,70 @@
+// =============================================================================
+// OpenClaw Configuration Template
+// =============================================================================
+// Copy this file to your OpenClaw instance at: /opt/openclaw/config/openclaw.jsonc
+// Replace all YOUR_* placeholders with values from your .env file.
+// JSONC supports comments -- remove them if your parser doesn't.
+// =============================================================================
+{
+  // --- LLM Provider ---
+  "llm": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-5-20250929",
+    "apiKey": "YOUR_ANTHROPIC_API_KEY",
+    "maxTokens": 4096
+  },
+
+  // --- Agent Identity ---
+  "agent": {
+    "name": "ContractorBot",
+    "workspaceDir": "/opt/openclaw/workspace",
+    // Workspace files: SOUL.md, IDENTITY.md, USER.md, AGENTS.md, TOOLS.md
+    "memoryEnabled": true,
+    "memoryDir": "/opt/openclaw/memory"
+  },
+
+  // --- Channels ---
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      // Allowlist restricts who the agent can message
+      "allowlist": [
+        "YOUR_PHONE_NUMBER",
+        "YOUR_CREW_MEMBER_1_PHONE",
+        "YOUR_CREW_MEMBER_2_PHONE",
+        "YOUR_CREW_MEMBER_3_PHONE",
+        "YOUR_CLIENT_PHONE"
+      ]
+    }
+  },
+
+  // --- Skills ---
+  "skills": {
+    "gog": {
+      "enabled": true,
+      // Google OAuth credentials (configured via `gog auth`)
+      "gmail": "YOUR_GMAIL_ADDRESS",
+      "projectId": "YOUR_GOOGLE_CLOUD_PROJECT_ID"
+    }
+  },
+
+  // --- Tools ---
+  "tools": {
+    "web_fetch": { "enabled": true },
+    "image": { "enabled": true },
+    "message": { "enabled": true },
+    "memory": { "enabled": true }
+  },
+
+  // --- Cron Jobs ---
+  "cron": {
+    "configDir": "/opt/openclaw/config/cron",
+    "timezone": "YOUR_TIMEZONE"
+  },
+
+  // --- Gateway Auth ---
+  "gateway": {
+    "token": "YOUR_GATEWAY_TOKEN",
+    "port": 3000
+  }
+}

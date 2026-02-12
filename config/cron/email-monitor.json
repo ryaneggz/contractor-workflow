@@ -1,0 +1,8 @@
+{
+  "name": "email-monitor",
+  "schedule": "*/15 * * * *",
+  "description": "Check for new client emails every 15 minutes",
+  "prompt": "Check for unread emails from clients. For each new email: (1) download any scope document attachments, (2) extract project details (client name, address, bid amount, scope of work), (3) create or update the project tracking sheet, (4) calculate the 80/20 pay split, (5) send WhatsApp messages to available crew members with job details. Mark processed emails as read.",
+  "tools": ["gog", "message", "memory", "web_fetch"],
+  "enabled": true
+}

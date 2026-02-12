@@ -1,0 +1,8 @@
+{
+  "name": "progress-check",
+  "schedule": "0 16 * * 1-5",
+  "description": "Daily 4 PM weekday check-in with active crews via WhatsApp",
+  "prompt": "For each active project with assigned crew: (1) send a WhatsApp check-in asking for progress update and any material receipts, (2) review any unprocessed crew messages from today, (3) update the project tracking sheet with new information, (4) if any project is over 90% of materials budget, alert the contractor via WhatsApp.",
+  "tools": ["gog", "message", "memory", "image"],
+  "enabled": true
+}
