@@ -41,26 +41,34 @@ flowchart TD
 
 ## OpenClaw Architecture Overview
 
-The workflow maps to OpenClaw's component model as follows:
+The repo contains config templates, workspace files, and reference templates that map to OpenClaw's component model:
 
 ```
-openclaw/
+contractor-workflow/
+  .env.example              # All YOUR_* placeholder values (copy to .env)
+  AGENTS.md                 # This file — architecture overview and mapping
+  README.md                 # Setup guide for first-time deployment
+  Makefile                  # Development helpers
   config/
-    openclaw.jsonc        # Main config (LLM, channels, skills, tools)
+    openclaw.jsonc          # Main config (LLM, channels, skills, tools)
     cron/
-      email-monitor.json  # Every 15 min -- triggers steps 1-5
-      morning-briefing.json # Daily 7 AM -- contractor status summary
-      progress-check.json # Daily 4 PM weekdays -- crew check-ins (step 8)
+      email-monitor.json    # Every 15 min — triggers steps 1-5
+      morning-briefing.json # Daily 7 AM — contractor status summary
+      progress-check.json   # Daily 4 PM weekdays — crew check-ins (step 8)
   workspace/
-    SOUL.md               # Agent persona and principles
-    IDENTITY.md           # Agent name and presentation
-    USER.md               # Contractor profile and crew roster
-    AGENTS.md             # Workflow logic (protocols for each step)
-    TOOLS.md              # Tool usage conventions and rules
-  memory/                 # Persistent project context across sessions
+    SOUL.md                 # Agent persona and principles
+    IDENTITY.md             # Agent name and presentation
+    USER.md                 # Contractor profile and crew roster
+    AGENTS.md               # Workflow logic (protocols for each step)
+    TOOLS.md                # Tool usage conventions and rules
+  templates/
+    project-sheet.md        # Google Sheets column definitions (Projects + Materials)
+    crew-message.md         # WhatsApp message templates for crew communication
+    client-invoice.md       # Invoice email template for clients
+  memory/                   # Persistent project context across sessions (on Droplet)
 ```
 
-**Cron jobs** initiate the workflow. **Workspace files** give the agent its instructions and personality. **Tools and skills** (gog, message, memory, image, web_fetch) are the actions the agent can take.
+**Cron jobs** initiate the workflow. **Workspace files** give the agent its instructions and personality. **Templates** define message formats and sheet structure. **Tools and skills** (gog, message, memory, image, web_fetch) are the actions the agent can take.
 
 ## Workflow-to-OpenClaw Mapping
 
@@ -91,10 +99,18 @@ openclaw/
 
 ## Configuration File Reference
 
-| File | Purpose | Docs |
-|------|---------|------|
-| `.env.example` | All placeholder values in one place | Copy to `.env`, fill in |
-| `config/openclaw.jsonc` | Main OpenClaw config template | Copy to Droplet |
-| `config/cron/*.json` | Three cron job definitions | Copy to Droplet |
-| `workspace/*.md` | Agent workspace files (5 files) | Copy to Droplet |
-| `templates/*.md` | Message and sheet templates (reference only) | Used by agent logic |
+| File | Purpose | Deploy Action |
+|------|---------|---------------|
+| `.env.example` | All YOUR_* placeholder values | Copy to `.env`, fill in |
+| `config/openclaw.jsonc` | Main OpenClaw config (LLM, channels, skills, tools) | Copy to Droplet `config/` |
+| `config/cron/email-monitor.json` | Check unread emails every 15 min | Copy to Droplet `config/cron/` |
+| `config/cron/morning-briefing.json` | Daily 7 AM status summary to contractor | Copy to Droplet `config/cron/` |
+| `config/cron/progress-check.json` | Weekday 4 PM crew check-ins | Copy to Droplet `config/cron/` |
+| `workspace/SOUL.md` | Agent persona and core principles | Copy to Droplet `workspace/` |
+| `workspace/IDENTITY.md` | Agent name, emoji, presentation rules | Copy to Droplet `workspace/` |
+| `workspace/USER.md` | Contractor profile, crew roster, pay structure | Copy to Droplet `workspace/` |
+| `workspace/AGENTS.md` | 10-step workflow protocols | Copy to Droplet `workspace/` |
+| `workspace/TOOLS.md` | Tool usage conventions and rules | Copy to Droplet `workspace/` |
+| `templates/project-sheet.md` | Google Sheets column structure (Projects + Materials) | Reference only — create sheet manually |
+| `templates/crew-message.md` | WhatsApp message templates for crew | Reference only — used by agent logic |
+| `templates/client-invoice.md` | Invoice email template for clients | Reference only — used by agent logic |
