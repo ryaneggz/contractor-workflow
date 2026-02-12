@@ -11,8 +11,10 @@ progress.txt
 # OS files
 .DS_Store
 
-# Claude
-**/.env*
+# Environment files (keep .env.example, ignore actual env files)
+.env
+.env.local
+.env.*.local
 
 # Defensive patterns
 **/node_modules/
